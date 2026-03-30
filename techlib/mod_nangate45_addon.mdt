@@ -1,0 +1,16 @@
+// -------------------------------------------------------------------//
+// Additional cells for mod_nangate45 (addon)
+// Created: 2026-03-30
+// -------------------------------------------------------------------//
+
+// Simple threshold cell: Y = A + B + C (logical OR of A,B,C)
+model THRESHOLD_0
+  (A, B, C, Y)
+(
+  input (A) ( )
+  input (B) ( )
+  input (C) ( )
+  output (Y) (
+    primitive = _or th_or ( A, B, C, Y );
+  )
+)

@@ -1,0 +1,16 @@
+read_lib techlib/mod_nangate45.mdt
+read_lib techlib/mod_nangate45_addon.mdt
+read_netlist mod_netlist/threshold_test.v
+report_netlist
+build_circuit --frame 1
+report_circuit
+set_fault_type saf
+add_fault --all
+set_static_compression on
+set_dynamic_compression on
+set_X-Fill on
+run_atpg
+report_statistics > rpt/threshold_test.rpt
+write_pattern pat/threshold_test.pat
+write_to_STIL pat/threshold_test.stil
+exit
