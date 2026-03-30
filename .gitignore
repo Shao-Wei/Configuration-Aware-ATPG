@@ -2,7 +2,10 @@
 makefile_output.txt
 profiler.txt
 pat/*
-pkg/*
+pkg/**/*.o
+pkg/**/*.d
+pkg/**/*.a
+pkg/**/*.exe
 bin/*
 lib/*
 

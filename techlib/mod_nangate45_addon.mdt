@@ -1,9 +1,4 @@
-// -------------------------------------------------------------------//
-// Additional cells for mod_nangate45 (addon)
-// Created: 2026-03-30
-// -------------------------------------------------------------------//
-
-// Simple threshold cell: Y = A + B + C (logical OR of A,B,C)
+// Generated addon MDT: THRESHOLD_0 (A+B+C)
 model THRESHOLD_0
   (A, B, C, Y)
 (

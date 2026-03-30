@@ -11,6 +11,7 @@
 #include "setup_cmd.h"
 #include "atpg_cmd.h"
 #include "misc_cmd.h"
+#include "configaware_cmd.h"
 
 using namespace CommonNs;
 using namespace IntfNs;
@@ -256,6 +257,10 @@ void initCmd(CmdMgr &cmdMgr, FanMgr &fanMgr)
 	Cmd *reportMemUsgCmd = new ReportMemUsgCmd("report_memory_usage");
 	cmdMgr.regCmd("MISC", reportPatFormatCmd);
 	cmdMgr.regCmd("MISC", reportMemUsgCmd);
+
+	// configuration-aware commands
+	Cmd *genAddonCmd = new GenAddonCmd("gen_addon_mdt", &fanMgr);
+	cmdMgr.regCmd("CONFIGAWARE", genAddonCmd);
 
 	// user interface
 	cmdMgr.setComment('#');
