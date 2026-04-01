@@ -9,9 +9,9 @@ This directory-level README documents the small end-to-end ATPG test that verifi
 
 What was added
 --------------
-- `techlib/mod_nangate45_addon.mdt` — MDT addon that declares the `THRESHOLD_0` model using the `_or` primitive (Y = A + B + C).
-- `mod_netlist/threshold_test.v` — simple Verilog netlist instantiating `THRESHOLD_0` as the device under test.
-- `script/fanScripts/test_threshold.script` — small script that loads the base MDT and the addon MDT, reads the netlist, builds the circuit, runs ATPG and writes reports/patterns.
+- `mod_nangate45_addon.mdt` — MDT addon that declares the `THRESHOLD_0` model using the `_or` primitive (Y = A + B + C).
+- `threshold_test.v` — simple Verilog netlist instantiating `THRESHOLD_0` as the device under test.
+- `test_threshold.script` — small script that loads the base MDT and the addon MDT, reads the netlist, builds the circuit, runs ATPG and writes reports/patterns.
 
 Why this is useful
 ------------------
@@ -29,7 +29,7 @@ How to run the test
 
 2. Run the ATPG test script:
 
-   ./bin/opt/fan -f script/fanScripts/test_threshold.script
+   ./bin/opt/fan -f FTL/00_Test_Addon/test_threshold.script
 
 3. Inspect the outputs:
 
