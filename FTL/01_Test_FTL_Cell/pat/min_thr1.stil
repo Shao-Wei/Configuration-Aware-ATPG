@@ -7,19 +7,21 @@ Signals {
    "A" In;
    "B" In;
    "C" In;
+   "D" In;
+   "E" In;
    "test_so" Out { ScanOut; }
-   "Y" Out;
+   "T" Out;
 }
 
 SignalGroups {
-   "_pi" = '"CK" + "test_si" + "test_se" + "A" + "B" + "C"';
-   "_in" = '"CK" + "test_si" + "test_se" + "A" + "B" + "C"';
+   "_pi" = '"CK" + "test_si" + "test_se" + "A" + "B" + "C" + "D" + "E"';
+   "_in" = '"CK" + "test_si" + "test_se" + "A" + "B" + "C" + "D" + "E"';
    "_si" = '"test_si"' { ScanIn; }
-   "_po" = '"test_so" + "Y"';
-   "_out" = '"test_so" + "Y"';
+   "_po" = '"test_so" + "T"';
+   "_out" = '"test_so" + "T"';
    "_so" = '"test_so"' { ScanOut; }
-   "_default_In_Timing_" = '"test_si" + "test_se" + "A" + "B" + "C"';
-   "_default_Out_Timing_" = '"test_so" + "Y"';
+   "_default_In_Timing_" = '"test_si" + "test_se" + "A" + "B" + "C" + "D" + "E"';
+   "_default_Out_Timing_" = '"test_so" + "T"';
 }
 
 Timing {
@@ -75,7 +77,7 @@ Procedures {
        W "_default_WFT_";
        F { "test_se"=0; }
        C { "_po"=\r2 X ; }
-       "forcePI": V { "_pi"=\r6 # ; }
+       "forcePI": V { "_pi"=\r8 # ; }
        "measurePO": V { "_po"=\r2 # ; }
        C { "_po"=\r2 X ; }
        "pulse": V { "CK"=P; }
@@ -84,7 +86,7 @@ Procedures {
        W "_default_WFT_";
        F { "test_se"=0; }
        C { "_po"=\r2 X ; }
-       "forcePI": V { "_pi"=\r6 # ; }
+       "forcePI": V { "_pi"=\r8 # ; }
        "measurePO": V { "_po"=\r2 # ; }
    }
 }
@@ -98,14 +100,14 @@ MacroDefs {
 
 Pattern "_pattern_" {
    W "_default_WFT_";
-   "precondition all Signals": C { "_pi"=\r6 0 ; "_po"=\r2 X ; }
+   "precondition all Signals": C { "_pi"=\r8 0 ; "_po"=\r2 X ; }
    Macro "test_setup";
    "pattern 0":
        Call "load_unload" {
            "test_si"=;
        }
        Call "capture_CK" {
-           "_pi"=000100;
+           "_pi"=00000001;
            "_po"=LH;
        }
    "pattern 1":
@@ -114,8 +116,8 @@ Pattern "_pattern_" {
            "test_si"=;
        }
        Call "capture_CK" {
-           "_pi"=000000;
-           "_po"=LL;
+           "_pi"=00000010;
+           "_po"=LH;
        }
    "pattern 2":
        Call "load_unload" {
@@ -123,7 +125,7 @@ Pattern "_pattern_" {
            "test_si"=;
        }
        Call "capture_CK" {
-           "_pi"=000010;
+           "_pi"=00000100;
            "_po"=LH;
        }
    "pattern 3":
@@ -132,10 +134,28 @@ Pattern "_pattern_" {
            "test_si"=;
        }
        Call "capture_CK" {
-           "_pi"=000001;
+           "_pi"=00001000;
            "_po"=LH;
        }
-   "end 3 unload":
+   "pattern 4":
+       Call "load_unload" {
+           "test_so"=;
+           "test_si"=;
+       }
+       Call "capture_CK" {
+           "_pi"=00000000;
+           "_po"=LL;
+       }
+   "pattern 5":
+       Call "load_unload" {
+           "test_so"=;
+           "test_si"=;
+       }
+       Call "capture_CK" {
+           "_pi"=00010000;
+           "_po"=LH;
+       }
+   "end 5 unload":
        Call "load_unload" {
            "test_so"=;
        }

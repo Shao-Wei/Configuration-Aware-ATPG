@@ -1,0 +1,16 @@
+read_lib techlib/mod_nangate45.mdt
+read_lib FTL/01_Test_FTL_Cell/mod_nangate45_addon.mdt
+read_netlist FTL/01_Test_FTL_Cell/min_thr1.v
+report_netlist
+build_circuit --frame 1
+report_circuit
+set_fault_type saf
+add_fault --all
+set_static_compression on
+set_dynamic_compression on
+set_X-Fill on
+run_atpg
+report_statistics > FTL/01_Test_FTL_Cell/rpt/min_thr1.rpt
+write_pattern FTL/01_Test_FTL_Cell/pat/min_thr1.pat
+write_to_STIL FTL/01_Test_FTL_Cell/pat/min_thr1.stil
+exit

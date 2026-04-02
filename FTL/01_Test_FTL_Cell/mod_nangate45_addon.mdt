@@ -1,0 +1,36 @@
+// -------------------------------------------------------------------//
+// Addon MDT for FTL cell test
+// Created: 2026-04-01
+// -------------------------------------------------------------------//
+
+// THRESHOLD_1: Y = A | B | C | D | E
+model THRESHOLD_1
+  (A, B, C, D, E, Y)
+(
+  input (A) ( )
+  input (B) ( )
+  input (C) ( )
+  input (D) ( )
+  input (E) ( )
+  output (Y) (
+    // Decompose 5-input OR into supported arities: OR4 + OR2
+    primitive = _or th_or1 ( A, B, C, D, i_1 );
+    primitive = _or th_or2 ( i_1, E, Y );
+  )
+)
+
+// THRESHOLD_2: Y = (A & B) | (C & D) | E
+model THRESHOLD_2
+  (A, B, C, D, E, Y)
+(
+  input (A) ( )
+  input (B) ( )
+  input (C) ( )
+  input (D) ( )
+  input (E) ( )
+  output (Y) (
+    primitive = _and t_and1 ( A, B, i_1 );
+    primitive = _and t_and2 ( C, D, i_2 );
+    primitive = _or  t_or1  ( i_1, i_2, E, Y );
+  )
+)

@@ -460,6 +460,8 @@ void Circuit::createCircuitPmt(const int &gateID, const Cell *const cell,
 void Circuit::determineGateType(const int &gateID, const Cell *const cell,
                                 const Pmt *const pmt)
 {
+	const size_t pmtPortSize = pmt->getNPort();
+
 	switch (pmt->type_)
 	{
 		case Pmt::BUF:
@@ -473,15 +475,15 @@ void Circuit::determineGateType(const int &gateID, const Cell *const cell,
 			circuitGates_[gateID].gateType_ = Gate::MUX;
 			break;
 		case Pmt::AND:
-			if (cell->getNPort() == 3)
+			if (pmtPortSize == 3)
 			{
 				circuitGates_[gateID].gateType_ = Gate::AND2;
 			}
-			else if (cell->getNPort() == 4)
+			else if (pmtPortSize == 4)
 			{
 				circuitGates_[gateID].gateType_ = Gate::AND3;
 			}
-			else if (cell->getNPort() == 5)
+			else if (pmtPortSize == 5)
 			{
 				circuitGates_[gateID].gateType_ = Gate::AND4;
 			}
@@ -491,15 +493,15 @@ void Circuit::determineGateType(const int &gateID, const Cell *const cell,
 			}
 			break;
 		case Pmt::NAND:
-			if (cell->getNPort() == 3)
+			if (pmtPortSize == 3)
 			{
 				circuitGates_[gateID].gateType_ = Gate::NAND2;
 			}
-			else if (cell->getNPort() == 4)
+			else if (pmtPortSize == 4)
 			{
 				circuitGates_[gateID].gateType_ = Gate::NAND3;
 			}
-			else if (cell->getNPort() == 5)
+			else if (pmtPortSize == 5)
 			{
 				circuitGates_[gateID].gateType_ = Gate::NAND4;
 			}
@@ -509,15 +511,15 @@ void Circuit::determineGateType(const int &gateID, const Cell *const cell,
 			}
 			break;
 		case Pmt::OR:
-			if (cell->getNPort() == 3)
+			if (pmtPortSize == 3)
 			{
 				circuitGates_[gateID].gateType_ = Gate::OR2;
 			}
-			else if (cell->getNPort() == 4)
+			else if (pmtPortSize == 4)
 			{
 				circuitGates_[gateID].gateType_ = Gate::OR3;
 			}
-			else if (cell->getNPort() == 5)
+			else if (pmtPortSize == 5)
 			{
 				circuitGates_[gateID].gateType_ = Gate::OR4;
 			}
@@ -527,15 +529,15 @@ void Circuit::determineGateType(const int &gateID, const Cell *const cell,
 			}
 			break;
 		case Pmt::NOR:
-			if (cell->getNPort() == 3)
+			if (pmtPortSize == 3)
 			{
 				circuitGates_[gateID].gateType_ = Gate::NOR2;
 			}
-			else if (cell->getNPort() == 4)
+			else if (pmtPortSize == 4)
 			{
 				circuitGates_[gateID].gateType_ = Gate::NOR3;
 			}
-			else if (cell->getNPort() == 5)
+			else if (pmtPortSize == 5)
 			{
 				circuitGates_[gateID].gateType_ = Gate::NOR4;
 			}
@@ -545,11 +547,11 @@ void Circuit::determineGateType(const int &gateID, const Cell *const cell,
 			}
 			break;
 		case Pmt::XOR:
-			if (cell->getNPort() == 3)
+			if (pmtPortSize == 3)
 			{
 				circuitGates_[gateID].gateType_ = Gate::XOR2;
 			}
-			else if (cell->getNPort() == 4)
+			else if (pmtPortSize == 4)
 			{
 				circuitGates_[gateID].gateType_ = Gate::XOR3;
 			}
@@ -559,11 +561,11 @@ void Circuit::determineGateType(const int &gateID, const Cell *const cell,
 			}
 			break;
 		case Pmt::XNOR:
-			if (cell->getNPort() == 3)
+			if (pmtPortSize == 3)
 			{
 				circuitGates_[gateID].gateType_ = Gate::XNOR2;
 			}
-			else if (cell->getNPort() == 4)
+			else if (pmtPortSize == 4)
 			{
 				circuitGates_[gateID].gateType_ = Gate::XNOR3;
 			}

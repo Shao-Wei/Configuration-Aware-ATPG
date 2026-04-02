@@ -1,12 +1,12 @@
 #                 Statistics Report
-#  Circuit name                       threshold_test
+#  Circuit name                             min_thr2
 #  Fault model                                   SAF
 #  Pattern type                                BASIC
 #  -------------------------------------------------
 #  Fault classes                             #faults
 #  ----------------------------  -------------------
-#    FU (full)                                    16
-#    FU (collapsed)                               13
+#    FU (full)                                    32
+#    FU (collapsed)                               25
 #    --------------------------  -------------------
 #    UD (undetected)                               0
 #    PT (possibly testable)                        0
@@ -15,7 +15,7 @@
 #    AB (atpg abort)                               0
 #    TI (tied)                                     0
 #    --------------------------  -------------------
-#    DT (detected)                                16
+#    DT (detected)                                32
 #  -------------------------------------------------
 #  Coverage                               percentage
 #    --------------------------  -------------------
@@ -23,7 +23,7 @@
 #    fault coverage                             100%
 #    atpg effectiveness                         100%
 #  -------------------------------------------------
-#  #Patterns                                       4
+#  #Patterns                                       5
 #  -------------------------------------------------
-#  ATPG runtime                           0.000195 s
+#  ATPG runtime                            7.7e-05 s
 #  -------------------------------------------------
