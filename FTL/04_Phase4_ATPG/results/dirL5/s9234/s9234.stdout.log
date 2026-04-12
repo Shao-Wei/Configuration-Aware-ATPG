@@ -1,0 +1,41 @@
+#  ==========================================================================
+#
+#                                   FAN ATPG
+#
+#                Copyright(c) Laboratory of Dependable Systems,
+#                Graduate Institute of Electronics Engineering,
+#                          National Taiwan University
+#                             All Rights Reserved.
+#
+#  ==========================================================================
+#
+#  Kernel:   Darwin
+#  Platform: UNKNOWN
+#  Memory:   UNKNOWN
+#
+/s9234.script 1> read_lib FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt
+#  Reading technology library ...
+fishy ...
+#  Finished reading library `FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt'    1.77602e+09 s    0 MB
+/s9234.script 2> read_netlist FTL/04_Phase4_ATPG/netlists/dirL5/s9234_mixed_SYN.v
+#  Reading netlist ...
+/s9234.script 3> report_netlist
+/s9234.script 4> build_circuit --frame 1
+/s9234.script 5> report_circuit
+/s9234.script 6> set_fault_type saf
+#  fault type set to stuck-at fault
+/s9234.script 7> add_fault --all
+/s9234.script 8> set_static_compression on
+#  static compression set to on
+/s9234.script 9> set_dynamic_compression on
+#  dynamic compression set to on
+/s9234.script 10> set_X-Fill on
+#  X-Fill set to on
+/s9234.script 11> run_atpg
+/s9234.script 12> report_statistics > FTL/04_Phase4_ATPG/results/dirL5/s9234/s9234.rpt
+/s9234.script 13> write_pattern FTL/04_Phase4_ATPG/results/dirL5/s9234/s9234.pat
+/s9234.script 14> write_to_STIL FTL/04_Phase4_ATPG/results/dirL5/s9234/s9234.stil
+/s9234.script 15> exit
+#  Goodbye
+#  Runtime        real 1.77602e+09 s        user 0.037613 s        sys 0.008786 s
+#  Memory         peak 0 MB

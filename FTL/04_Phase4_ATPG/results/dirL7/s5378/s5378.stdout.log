@@ -1,0 +1,41 @@
+#  ==========================================================================
+#
+#                                   FAN ATPG
+#
+#                Copyright(c) Laboratory of Dependable Systems,
+#                Graduate Institute of Electronics Engineering,
+#                          National Taiwan University
+#                             All Rights Reserved.
+#
+#  ==========================================================================
+#
+#  Kernel:   Darwin
+#  Platform: UNKNOWN
+#  Memory:   UNKNOWN
+#
+/s5378.script 1> read_lib FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt
+#  Reading technology library ...
+fishy ...
+#  Finished reading library `FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt'    1.77602e+09 s    0 MB
+/s5378.script 2> read_netlist FTL/04_Phase4_ATPG/netlists/dirL7/s5378_mixed_SYN.v
+#  Reading netlist ...
+/s5378.script 3> report_netlist
+/s5378.script 4> build_circuit --frame 1
+/s5378.script 5> report_circuit
+/s5378.script 6> set_fault_type saf
+#  fault type set to stuck-at fault
+/s5378.script 7> add_fault --all
+/s5378.script 8> set_static_compression on
+#  static compression set to on
+/s5378.script 9> set_dynamic_compression on
+#  dynamic compression set to on
+/s5378.script 10> set_X-Fill on
+#  X-Fill set to on
+/s5378.script 11> run_atpg
+/s5378.script 12> report_statistics > FTL/04_Phase4_ATPG/results/dirL7/s5378/s5378.rpt
+/s5378.script 13> write_pattern FTL/04_Phase4_ATPG/results/dirL7/s5378/s5378.pat
+/s5378.script 14> write_to_STIL FTL/04_Phase4_ATPG/results/dirL7/s5378/s5378.stil
+/s5378.script 15> exit
+#  Goodbye
+#  Runtime        real 1.77602e+09 s        user 0.036322 s        sys 0.009167 s
+#  Memory         peak 0 MB

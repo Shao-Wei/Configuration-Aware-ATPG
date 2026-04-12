@@ -1,0 +1,29 @@
+#                 Statistics Report
+#  Circuit name                          b15_C_mixed
+#  Fault model                                   SAF
+#  Pattern type                                BASIC
+#  -------------------------------------------------
+#  Fault classes                             #faults
+#  ----------------------------  -------------------
+#    FU (full)                                 53750
+#    FU (collapsed)                            34824
+#    --------------------------  -------------------
+#    UD (undetected)                               0
+#    PT (possibly testable)                        0
+#    AU (atpg untestable)                        704
+#    RE (redundant)                                0
+#    AB (atpg abort)                             245
+#    TI (tied)                                     0
+#    --------------------------  -------------------
+#    DT (detected)                             52801
+#  -------------------------------------------------
+#  Coverage                               percentage
+#    --------------------------  -------------------
+#    test coverage                            99.54%
+#    fault coverage                           98.23%
+#    atpg effectiveness                       99.54%
+#  -------------------------------------------------
+#  #Patterns                                     439
+#  -------------------------------------------------
+#  ATPG runtime                          1.776e+09 s
+#  -------------------------------------------------

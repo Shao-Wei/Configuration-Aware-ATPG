@@ -1,0 +1,29 @@
+#                 Statistics Report
+#  Circuit name                          b20_C_mixed
+#  Fault model                                   SAF
+#  Pattern type                                BASIC
+#  -------------------------------------------------
+#  Fault classes                             #faults
+#  ----------------------------  -------------------
+#    FU (full)                                 60912
+#    FU (collapsed)                            39951
+#    --------------------------  -------------------
+#    UD (undetected)                               0
+#    PT (possibly testable)                        0
+#    AU (atpg untestable)                          1
+#    RE (redundant)                                0
+#    AB (atpg abort)                              16
+#    TI (tied)                                     0
+#    --------------------------  -------------------
+#    DT (detected)                             60895
+#  -------------------------------------------------
+#  Coverage                               percentage
+#    --------------------------  -------------------
+#    test coverage                            99.97%
+#    fault coverage                           99.97%
+#    atpg effectiveness                       99.97%
+#  -------------------------------------------------
+#  #Patterns                                     417
+#  -------------------------------------------------
+#  ATPG runtime                          1.776e+09 s
+#  -------------------------------------------------

@@ -1,0 +1,41 @@
+#  ==========================================================================
+#
+#                                   FAN ATPG
+#
+#                Copyright(c) Laboratory of Dependable Systems,
+#                Graduate Institute of Electronics Engineering,
+#                          National Taiwan University
+#                             All Rights Reserved.
+#
+#  ==========================================================================
+#
+#  Kernel:   Darwin
+#  Platform: UNKNOWN
+#  Memory:   UNKNOWN
+#
+/b15_C.script 1> read_lib FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt
+#  Reading technology library ...
+fishy ...
+#  Finished reading library `FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt'    1.77602e+09 s    0 MB
+/b15_C.script 2> read_netlist FTL/04_Phase4_ATPG/netlists/dirL5/b15_C_mixed_SYN.v
+#  Reading netlist ...
+/b15_C.script 3> report_netlist
+/b15_C.script 4> build_circuit --frame 1
+/b15_C.script 5> report_circuit
+/b15_C.script 6> set_fault_type saf
+#  fault type set to stuck-at fault
+/b15_C.script 7> add_fault --all
+/b15_C.script 8> set_static_compression on
+#  static compression set to on
+/b15_C.script 9> set_dynamic_compression on
+#  dynamic compression set to on
+/b15_C.script 10> set_X-Fill on
+#  X-Fill set to on
+/b15_C.script 11> run_atpg
+/b15_C.script 12> report_statistics > FTL/04_Phase4_ATPG/results/dirL5/b15_C/b15_C.rpt
+/b15_C.script 13> write_pattern FTL/04_Phase4_ATPG/results/dirL5/b15_C/b15_C.pat
+/b15_C.script 14> write_to_STIL FTL/04_Phase4_ATPG/results/dirL5/b15_C/b15_C.stil
+/b15_C.script 15> exit
+#  Goodbye
+#  Runtime        real 1.77602e+09 s        user 0.057502 s        sys 0.011288 s
+#  Memory         peak 0 MB

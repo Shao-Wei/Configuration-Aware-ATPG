@@ -1,0 +1,15 @@
+read_lib FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt
+read_netlist FTL/04_Phase4_ATPG/netlists/dirL0/s38417_mixed_SYN.v
+report_netlist
+build_circuit --frame 1
+report_circuit
+set_fault_type saf
+add_fault --all
+set_static_compression on
+set_dynamic_compression on
+set_X-Fill on
+run_atpg
+report_statistics > FTL/04_Phase4_ATPG/results/dirL0/s38417/s38417.rpt
+write_pattern FTL/04_Phase4_ATPG/results/dirL0/s38417/s38417.pat
+write_to_STIL FTL/04_Phase4_ATPG/results/dirL0/s38417/s38417.stil
+exit

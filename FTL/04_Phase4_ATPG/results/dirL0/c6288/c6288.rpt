@@ -1,0 +1,29 @@
+#                 Statistics Report
+#  Circuit name                          c6288_mixed
+#  Fault model                                   SAF
+#  Pattern type                                BASIC
+#  -------------------------------------------------
+#  Fault classes                             #faults
+#  ----------------------------  -------------------
+#    FU (full)                                 12696
+#    FU (collapsed)                             9149
+#    --------------------------  -------------------
+#    UD (undetected)                               0
+#    PT (possibly testable)                        0
+#    AU (atpg untestable)                        271
+#    RE (redundant)                                0
+#    AB (atpg abort)                              30
+#    TI (tied)                                     0
+#    --------------------------  -------------------
+#    DT (detected)                             12395
+#  -------------------------------------------------
+#  Coverage                               percentage
+#    --------------------------  -------------------
+#    test coverage                            99.76%
+#    fault coverage                           97.63%
+#    atpg effectiveness                       99.76%
+#  -------------------------------------------------
+#  #Patterns                                      63
+#  -------------------------------------------------
+#  ATPG runtime                          1.776e+09 s
+#  -------------------------------------------------

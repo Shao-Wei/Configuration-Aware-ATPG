@@ -1,0 +1,29 @@
+#                 Statistics Report
+#  Circuit name                     multiplier_mixed
+#  Fault model                                   SAF
+#  Pattern type                                BASIC
+#  -------------------------------------------------
+#  Fault classes                             #faults
+#  ----------------------------  -------------------
+#    FU (full)                                 58598
+#    FU (collapsed)                            42030
+#    --------------------------  -------------------
+#    UD (undetected)                               0
+#    PT (possibly testable)                        0
+#    AU (atpg untestable)                        892
+#    RE (redundant)                                0
+#    AB (atpg abort)                               6
+#    TI (tied)                                     0
+#    --------------------------  -------------------
+#    DT (detected)                             57700
+#  -------------------------------------------------
+#  Coverage                               percentage
+#    --------------------------  -------------------
+#    test coverage                            99.99%
+#    fault coverage                           98.47%
+#    atpg effectiveness                       99.99%
+#  -------------------------------------------------
+#  #Patterns                                      90
+#  -------------------------------------------------
+#  ATPG runtime                          1.776e+09 s
+#  -------------------------------------------------

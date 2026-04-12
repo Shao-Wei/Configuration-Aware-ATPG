@@ -1,0 +1,41 @@
+#  ==========================================================================
+#
+#                                   FAN ATPG
+#
+#                Copyright(c) Laboratory of Dependable Systems,
+#                Graduate Institute of Electronics Engineering,
+#                          National Taiwan University
+#                             All Rights Reserved.
+#
+#  ==========================================================================
+#
+#  Kernel:   Darwin
+#  Platform: UNKNOWN
+#  Memory:   UNKNOWN
+#
+/fpu_mul.script 1> read_lib FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt
+#  Reading technology library ...
+fishy ...
+#  Finished reading library `FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt'    1.77603e+09 s    0 MB
+/fpu_mul.script 2> read_netlist FTL/04_Phase4_ATPG/netlists/dirL11/fpu_mul_mixed_SYN.v
+#  Reading netlist ...
+/fpu_mul.script 3> report_netlist
+/fpu_mul.script 4> build_circuit --frame 1
+/fpu_mul.script 5> report_circuit
+/fpu_mul.script 6> set_fault_type saf
+#  fault type set to stuck-at fault
+/fpu_mul.script 7> add_fault --all
+/fpu_mul.script 8> set_static_compression on
+#  static compression set to on
+/fpu_mul.script 9> set_dynamic_compression on
+#  dynamic compression set to on
+/fpu_mul.script 10> set_X-Fill on
+#  X-Fill set to on
+/fpu_mul.script 11> run_atpg
+/fpu_mul.script 12> report_statistics > FTL/04_Phase4_ATPG/results/dirL11/fpu_mul/fpu_mul.rpt
+/fpu_mul.script 13> write_pattern FTL/04_Phase4_ATPG/results/dirL11/fpu_mul/fpu_mul.pat
+/fpu_mul.script 14> write_to_STIL FTL/04_Phase4_ATPG/results/dirL11/fpu_mul/fpu_mul.stil
+/fpu_mul.script 15> exit
+#  Goodbye
+#  Runtime        real 1.77603e+09 s        user 0.134537 s        sys 0.021645 s
+#  Memory         peak 0 MB

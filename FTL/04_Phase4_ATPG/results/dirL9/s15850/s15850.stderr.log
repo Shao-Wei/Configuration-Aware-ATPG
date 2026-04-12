@@ -1,0 +1,14 @@
+**ERROR TmUsage::checkUsage(): cannot get memory usage
+**ERROR TmUsage::checkUsage(): cannot get memory usage
+**ERROR TmUsage::checkUsage(): cannot get memory usage
+**ERROR TmUsage::checkUsage(): cannot get memory usage
+**ERROR ReadNlCmd()::exec(): netlist error
+**ERROR ReportNetlistCmd::exec(): netlist needed
+**ERROR BuildCirucitCmd::exec(): netlist needed
+**ERROR ReportCircuitCmd::exec(): circuit needed
+**ERROR AddFaultCmd::exec(): circuit needed
+**ERROR RunFaultSimCmd::exec(): circuit needed
+**WARN ReportStatsCmd::exec(): no statistics
+**ERROR WritePatternCmd::exec(): circuit needed
+**ERROR WriteSTILCmd::exec(): circuit needed
+**ERROR TmUsage::checkUsage(): cannot get memory usage

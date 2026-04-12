@@ -308,6 +308,7 @@ void Circuit::createCircuitPPI()
 void Circuit::createCircuitComb()
 {
 	Cell *top = pNetlist_->getTop();
+	int maxCombLvl = -1;
 
 	for (int i = numPPI_; i < (int)top->getNCell(); ++i)
 	{
@@ -321,11 +322,15 @@ void Circuit::createCircuitComb()
 
 			Pmt *pmt = (Pmt *)cellInTop->libc_->getCell(j);
 			createCircuitPmt(combGateID, cellInTop, pmt);
+			if (circuitGates_[combGateID].numLevel_ > maxCombLvl)
+			{
+				maxCombLvl = circuitGates_[combGateID].numLevel_;
+			}
 		}
 	}
-	if ((int)top->getNCell() > 0)
+	if (maxCombLvl >= 0)
 	{
-		circuitLvl_ = circuitGates_[cellIndexToGateIndex_[top->getNCell() - 1]].numLevel_ + 2;
+		circuitLvl_ = maxCombLvl + 2;
 	}
 }
 
@@ -401,6 +406,12 @@ void Circuit::createCircuitPmt(const int &gateID, const Cell *const cell,
 						break;
 					}
 				}
+			}
+			else
+			{
+				// Other primitive input pins on the same internal net are fanouts,
+				// not drivers of this primitive input.
+				continue;
 			}
 			circuitGates_[gateID].faninVector_.push_back(faninID);
 			++circuitGates_[gateID].numFI_;

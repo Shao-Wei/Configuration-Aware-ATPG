@@ -1,0 +1,29 @@
+#                 Statistics Report
+#  Circuit name                         filter_mixed
+#  Fault model                                   SAF
+#  Pattern type                                BASIC
+#  -------------------------------------------------
+#  Fault classes                             #faults
+#  ----------------------------  -------------------
+#    FU (full)                                188876
+#    FU (collapsed)                           135032
+#    --------------------------  -------------------
+#    UD (undetected)                               0
+#    PT (possibly testable)                        0
+#    AU (atpg untestable)                       5101
+#    RE (redundant)                                0
+#    AB (atpg abort)                              54
+#    TI (tied)                                     0
+#    --------------------------  -------------------
+#    DT (detected)                            183721
+#  -------------------------------------------------
+#  Coverage                               percentage
+#    --------------------------  -------------------
+#    test coverage                            99.97%
+#    fault coverage                           97.27%
+#    atpg effectiveness                       99.97%
+#  -------------------------------------------------
+#  #Patterns                                     132
+#  -------------------------------------------------
+#  ATPG runtime                          1.776e+09 s
+#  -------------------------------------------------

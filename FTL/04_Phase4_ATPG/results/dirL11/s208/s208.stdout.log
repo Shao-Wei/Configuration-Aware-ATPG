@@ -1,0 +1,183 @@
+#  ==========================================================================
+#
+#                                   FAN ATPG
+#
+#                Copyright(c) Laboratory of Dependable Systems,
+#                Graduate Institute of Electronics Engineering,
+#                          National Taiwan University
+#                             All Rights Reserved.
+#
+#  ==========================================================================
+#
+#  Kernel:   Darwin
+#  Platform: UNKNOWN
+#  Memory:   UNKNOWN
+#
+/s208.script 1> read_lib FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt
+#  Reading technology library ...
+fishy ...
+#  Finished reading library `FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt'    1.77603e+09 s    0 MB
+/s208.script 2> read_netlist FTL/04_Phase4_ATPG/netlists/dirL11/s208_mixed_SYN.v
+#  Reading netlist ...
+#  Finished reading netlist `FTL/04_Phase4_ATPG/netlists/dirL11/s208_mixed_SYN.v'    1.77603e+09 s    0 MB
+/s208.script 3> report_netlist
+#  netlist information
+#    number of modules: 1
+#    modules:           s208_mixed
+#    current module:    s208_mixed
+#    number of ports:   29
+#    number of cells:   39
+#    number of nets:    58
+/s208.script 4> build_circuit --frame 1
+#  Building circuit ...
+#  Finished building circuit    1.77603e+09 s    0 MB
+/s208.script 5> report_circuit
+#  circuit information
+#    netlist:         s208_mixed
+#    number of PIs:   19
+#    number of PPIs:  0
+#    number of POs:   10
+#    number of combs: 80
+#    number of gates: 109
+#    number of nets:  145
+/s208.script 6> set_fault_type saf
+#  fault type set to stuck-at fault
+/s208.script 7> add_fault --all
+#  Building fault list ...
+#  Finished building fault list    1.77603e+09 s    0 MB
+/s208.script 8> set_static_compression on
+#  static compression set to on
+/s208.script 9> set_dynamic_compression on
+#  dynamic compression set to on
+/s208.script 10> set_X-Fill on
+#  X-Fill set to on
+/s208.script 11> run_atpg
+#  Performing pattern generation ...
+#  Finished pattern generation    1.77603e+09 s    0 MB
+/s208.script 12> report_statistics > FTL/04_Phase4_ATPG/results/dirL11/s208/s208.rpt
+/s208.script 13> write_pattern FTL/04_Phase4_ATPG/results/dirL11/s208/s208.pat
+#  Writing pattern to `FTL/04_Phase4_ATPG/results/dirL11/s208/s208.pat' ...
+/s208.script 14> write_to_STIL FTL/04_Phase4_ATPG/results/dirL11/s208/s208.stil
+#  Writing pattern to STIL...
+==========
+PI_ORDER CK test_si test_se X Clear C_8 C_7 C_6 C_5 C_4 C_3 C_2 C_1 C_0 Y_4 Y_3 Y_2 Y_1 Y_8 Y_7 Y_6 Y_5 
+SCAN_ORDER 
+PO_ORDER test_so II6 II3 II4 II158 II155 II156 Z II5 II157 W 
+BASIC_SCAN 28
+
+pattern_1
+pPI1 0011011010111110011
+pPO1 LLLLLHLLLL
+
+pattern_2
+pPI1 0011011010111111111
+pPO1 LLLLLLLLLH
+
+pattern_3
+pPI1 1011011010011001010
+pPO1 HHHLLLLLLL
+
+pattern_4
+pPI1 0111011010111110000
+pPO1 LLLLLLLLLL
+
+pattern_5
+pPI1 1001101101001111000
+pPO1 LHLLLLHLLL
+
+pattern_6
+pPI1 1001101101010111000
+pPO1 LHHLLLHLLL
+
+pattern_7
+pPI1 1011101101000000000
+pPO1 HLLLLLLLLL
+
+pattern_8
+pPI1 0001101101010000000
+pPO1 LLLLLLLLLL
+
+pattern_9
+pPI1 1001101101010010000
+pPO1 LHLLLLHHLL
+
+pattern_10
+pPI1 0011011010111110111
+pPO1 LLLLHLLLLL
+
+pattern_11
+pPI1 1001101110011110101
+pPO1 LLLLLHLLHL
+
+pattern_12
+pPI1 1001101101011111110
+pPO1 LLLHHHHLHL
+
+pattern_13
+pPI1 1011011001001100000
+pPO1 HLHLLLLHLL
+
+pattern_14
+pPI1 1001101011001101010
+pPO1 HLHLLLHHLL
+
+pattern_15
+pPI1 1011011010001001011
+pPO1 HLHLLLLLLL
+
+pattern_16
+pPI1 1001101110011001010
+pPO1 HHHLLLHLLL
+
+pattern_17
+pPI1 1011010110010001011
+pPO1 HHLLLLLLLL
+
+pattern_18
+pPI1 1001101110010000111
+pPO1 HHLLLLHLLL
+
+pattern_19
+pPI1 1011001101000001011
+pPO1 HLLLLLLLLL
+
+pattern_20
+pPI1 1010110110000001101
+pPO1 HLLLLLHLLL
+
+pattern_21
+pPI1 1011010110000001110
+pPO1 HLLLLLLLLL
+
+pattern_22
+pPI1 1011101101000001110
+pPO1 HLLLLLHLLL
+
+pattern_23
+pPI1 1010101101000000100
+pPO1 HLLLLLLLLL
+
+pattern_24
+pPI1 1001110110000000100
+pPO1 HLLLLLHLLL
+
+pattern_25
+pPI1 1001111101000001000
+pPO1 HLLLLLLLLL
+
+pattern_26
+pPI1 1010001100000001000
+pPO1 HLLLLLHLLL
+
+pattern_27
+pPI1 0001101101111110000
+pPO1 LLLHLLLLLL
+
+pattern_28
+pPI1 1101101100111101111
+pPO1 LLLLLLHLLH
+==========
+/s208.script 15> exit
+#  Goodbye
+#  Runtime        real 1.776e+09 s        user 0.04409 s        sys 0.009649 s
+#  Memory         peak 0 MB
