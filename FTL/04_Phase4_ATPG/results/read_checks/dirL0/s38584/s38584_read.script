@@ -1,0 +1,4 @@
+read_lib FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt
+read_netlist FTL/04_Phase4_ATPG/netlists/dirL0/s38584_mixed_SYN.v
+report_netlist
+exit

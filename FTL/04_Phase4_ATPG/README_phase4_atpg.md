@@ -39,17 +39,25 @@ Nangate+FTL combined MDT caused `fan` to segfault in the first smoke run on this
 machine. The maintained flow therefore extracts the FTL models actually used by
 the selected `dirL*` netlists from the full generated MDT, then concatenates
 that subset with `techlib/mod_nangate45.mdt`. For the current inputs this subset
-contains 807 FTL models.
+contains 807 FTL models after the Phase 3 connectivity cleanup.
 
 ## How to Run
 
 From the `Configuration-Aware-ATPG/` repo root:
 
+### Full ATPG
+
+Run the full selected `dirL*` ATPG batch with:
+
 ```bash
 bash FTL/04_Phase4_ATPG/scripts/run_dirL_all.sh
 ```
 
-To run a small smoke test:
+This is the slow workflow. It reads the library and netlist, builds the ATPG
+circuit, creates stuck-at faults, runs ATPG, and writes reports plus pattern
+files.
+
+To run a small full-ATPG smoke test:
 
 ```bash
 python3 FTL/04_Phase4_ATPG/scripts/run_phase4_atpg.py \
@@ -57,13 +65,15 @@ python3 FTL/04_Phase4_ATPG/scripts/run_phase4_atpg.py \
   --benchmarks c1908
 ```
 
-Each target generates an ATPG command script under its result directory, then
-runs:
+Each full ATPG target generates a command script under its result directory,
+then runs:
 
 ```text
 read_lib FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt
 read_netlist FTL/04_Phase4_ATPG/netlists/<category>/<benchmark>_mixed_SYN.v
+report_netlist
 build_circuit --frame 1
+report_circuit
 set_fault_type saf
 add_fault --all
 set_static_compression on
@@ -73,6 +83,25 @@ run_atpg
 report_statistics > ...
 write_pattern ...
 write_to_STIL ...
+```
+
+### Read-Only Preflight
+
+Verify netlist readability without building ATPG circuits, running ATPG, or
+writing pattern files with:
+
+```bash
+python3 FTL/04_Phase4_ATPG/scripts/check_phase4_read_netlist.py \
+  --categories dirL0 dirL5 dirL7 dirL9 dirL11
+```
+
+Each read-only target generates a smaller command script under
+`FTL/04_Phase4_ATPG/results/read_checks/`, then runs only:
+
+```text
+read_lib FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt
+read_netlist FTL/04_Phase4_ATPG/netlists/<category>/<benchmark>_mixed_SYN.v
+report_netlist
 ```
 
 ## Outputs
@@ -92,6 +121,11 @@ The aggregate CSV is:
 
 The summary captures run status, coverage, pattern count, runtime, and fault
 class counts parsed from ATPG `report_statistics`.
+
+The read-only preflight checker writes:
+
+- `FTL/04_Phase4_ATPG/results/phase4_read_check_summary.csv`
+- `FTL/04_Phase4_ATPG/results/read_checks/<category>/<benchmark>/`
 
 ## Observations
 
@@ -146,6 +180,22 @@ for example `n1002`, `n1010`, and `1'b1`. This means the immediate blocker is
 the Phase 3 patchback netlist connectivity for those designs, not ATPG coverage
 quality on valid mixed circuits.
 
+After the Phase 3 patchback cleanup, the Phase 4 netlist copy was refreshed, the
+FTL subset library was rebuilt, and the read-only checker was run across the
+same 115 selected `dirL*` targets:
+
+```bash
+python3 FTL/04_Phase4_ATPG/scripts/check_phase4_read_netlist.py \
+  --categories dirL0 dirL5 dirL7 dirL9 dirL11
+```
+
+The read-only result is now 115 of 115 readable netlists. No full ATPG batch was
+rerun for this check. The Phase 3 cleanup that unblocked the read step inserts
+all FTL patches, promotes missing FTL input-only signals to primary inputs,
+promotes missing FTL output-only signals to primary outputs, replaces raw
+constant literals with Nangate `LOGIC0_X1`/`LOGIC1_X1` tie cells, and removes
+unused boundary ports that FAN reports as floating.
+
 Two ATPG-side fixes were required during this phase:
 
 - `pkg/core/src/circuit.cpp` now ignores sibling primitive input pins when
@@ -164,16 +214,13 @@ Known environmental warning:
 
 ## Next Steps
 
-For coverage/pattern quality, the successful runs are encouraging: coverage is
-high and pattern counts are moderate for the tested valid circuits. The next
-work should focus on making the remaining 66 patched netlists valid:
+For coverage/pattern quality, the successful full ATPG runs are encouraging:
+coverage is high and pattern counts are moderate for the tested valid circuits.
+The next work should rerun the full Phase 4 ATPG batch now that read-only
+connectivity passes for all selected `dirL*` netlists, then compare coverage and
+pattern counts against the current 49-run baseline.
 
-- Fix Phase 3 patchback connectivity for the failed targets with floating or
-  no-driver nets.
-- Add a Phase 3 or Phase 4 preflight check that runs `read_netlist -v` or an
-  equivalent connectivity checker before ATPG.
-- Re-run Phase 4 after the patchback fixes; then compare coverage and pattern
-  counts against the current 49-run baseline.
+- Keep `check_phase4_read_netlist.py` as a fast preflight before full ATPG.
 - Investigate the ATPG full-MDT load scalability separately, because the subset
   MDT proves the used FTL models can run but does not resolve the full
   94,570-model library load issue.

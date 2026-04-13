@@ -1,0 +1,34 @@
+#  ==========================================================================
+#
+#                                   FAN ATPG
+#
+#                Copyright(c) Laboratory of Dependable Systems,
+#                Graduate Institute of Electronics Engineering,
+#                          National Taiwan University
+#                             All Rights Reserved.
+#
+#  ==========================================================================
+#
+#  Kernel:   Darwin
+#  Platform: UNKNOWN
+#  Memory:   UNKNOWN
+#
+/b21_C_read.script 1> read_lib FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt
+#  Reading technology library ...
+fishy ...
+#  Finished reading library `FTL/04_Phase4_ATPG/lib/mod_nangate45_plus_ftl_dirL_subset.mdt'    1.77604e+09 s    0 MB
+/b21_C_read.script 2> read_netlist FTL/04_Phase4_ATPG/netlists/dirL7/b21_C_mixed_SYN.v
+#  Reading netlist ...
+#  Finished reading netlist `FTL/04_Phase4_ATPG/netlists/dirL7/b21_C_mixed_SYN.v'    1.77604e+09 s    0 MB
+/b21_C_read.script 3> report_netlist
+#  netlist information
+#    number of modules: 1
+#    modules:           b21_C_mixed
+#    current module:    b21_C_mixed
+#    number of ports:   1271
+#    number of cells:   4379
+#    number of nets:    5017
+/b21_C_read.script 4> exit
+#  Goodbye
+#  Runtime        real 1.77604e+09 s        user 0.059692 s        sys 0.010669 s
+#  Memory         peak 0 MB

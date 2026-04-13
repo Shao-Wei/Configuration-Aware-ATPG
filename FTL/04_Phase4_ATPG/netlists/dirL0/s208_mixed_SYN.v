@@ -5,16 +5,17 @@
 /////////////////////////////////////////////////////////////
 
 
-module s208_mixed ( X, Clear, C_8, C_7, C_6, C_5, C_4, C_3, C_2, C_1, C_0,
-        Y_4, Y_3, Y_2, Y_1, Y_8, Y_7, Y_6, Y_5, II6, II3, II4, II158, II155,
-        II156, Z, II5, II157, W );
-  input C_0, C_1, C_2, C_3, C_4, C_5, C_6, C_7, C_8, Clear, X, Y_1, Y_2,
-         Y_3, Y_4, Y_5, Y_6, Y_7, Y_8;
-  output II155, II156, II157, II158, II3, II4, II5, II6, W, Z;
-  wire n27, n28, n29, n30, n31, n32, n33, n34, n35, n36, n38, n39, n40, n41,
-         n42, n43, n44, n45, n46, n47, n48, n49, n50, n51, n52, n53, n54,
-         n55, n56, n57, n58, n59, n60, n61, n62, n63, n64, n65, n66, n67,
-         n68, n69, n79, n81, n87, n90;
+module s208_mixed ( X, Clear, C_8, C_7, C_6, C_5, C_4, C_3, C_2, Y_4, Y_3,
+        Y_2, Y_1, Y_8, Y_7, Y_6, Y_5, n79, n53, II6, II4, II158, II156, II5,
+        II157, W, n33, n34, n39, n49, n50, n55, n66, n68, n81, n87, n90,
+        C_0, C_1, II155, II3, Z );
+  input X, Clear, C_8, C_7, C_6, C_5, C_4, C_3, C_2, Y_4, Y_3, Y_2, Y_1,
+         Y_8, Y_7, Y_6, Y_5, n79, n53, C_0, C_1;
+  output II6, II4, II158, II156, II5, II157, W, n33, n34, n39, n49, n50,
+         n55, n66, n68, n81, n87, n90, II155, II3, Z;
+  wire   n27, n28, n29, n30, n31, n32, n35, n36, n38, n40, n41, n42, n43, n44,
+         n45, n46, n47, n48, n51, n52, n54, n56, n57, n58, n59, n60, n61, n62,
+         n63, n64, n65, n67, n69;
 
   NAND2_X1 U45 ( .A1(n35), .A2(n65), .ZN(n67) );
   AND2_X1 U46 ( .A1(n27), .A2(n36), .ZN(n60) );
