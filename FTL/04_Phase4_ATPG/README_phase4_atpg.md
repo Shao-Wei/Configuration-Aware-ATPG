@@ -204,7 +204,7 @@ promotes missing FTL output-only signals to primary outputs, replaces raw
 constant literals with Nangate `LOGIC0_X1`/`LOGIC1_X1` tie cells, and removes
 unused boundary ports that FAN reports as floating.
 
-Two ATPG-side fixes were required during this phase:
+ATPG-side fixes required during this phase:
 
 - `pkg/core/src/circuit.cpp` now ignores sibling primitive input pins when
   resolving fanins on an internal library-cell net. Before this fix, internal
@@ -213,6 +213,15 @@ Two ATPG-side fixes were required during this phase:
 - `pkg/core/src/circuit.cpp` now computes `circuitLvl_` from the maximum level
   across all created combinational primitive gates. Before this fix, a
   multi-primitive final cell could give POs an artificially low level.
+- `pkg/core/src/circuit.cpp` now skips unconnected external model ports during
+  fanout-size estimation in `createCircuitPmt()`. Before this fix, the
+  category-level Slurm jobs for `dirL9` and `dirL11` failed because
+  `fpu_mul` segfaulted during `build_circuit` while dereferencing a null
+  `exNet_` on an unconnected `FA_X1` output-side model port. After rebuilding
+  `bin/opt/fan`, targeted reruns of `dirL9/fpu_mul` and `dirL11/fpu_mul`
+  completed through the Phase 4 wrapper: `dirL9/fpu_mul` reached 99.96% fault
+  coverage with 99 patterns, and `dirL11/fpu_mul` reached 99.98% fault coverage
+  with 99 patterns.
 
 Known environmental warning:
 

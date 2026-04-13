@@ -446,7 +446,12 @@ void Circuit::createCircuitPmt(const int &gateID, const Cell *const cell,
 		}
 		else if ((*it)->top_ == cell->libc_)
 		{
-			int nid = cell->getPort((*it)->id_)->exNet_->id_;
+			Port *extPort = cell->getPort((*it)->id_);
+			if (!extPort || !extPort->exNet_)
+			{
+				continue;
+			}
+			int nid = extPort->exNet_->id_;
 			fanoutSize += cell->top_->getNetPorts(nid).size() - 1;
 		}
 	}
