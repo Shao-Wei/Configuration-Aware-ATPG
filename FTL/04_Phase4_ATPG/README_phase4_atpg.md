@@ -55,7 +55,13 @@ bash FTL/04_Phase4_ATPG/scripts/run_dirL_all.sh
 
 This is the slow workflow. It reads the library and netlist, builds the ATPG
 circuit, creates stuck-at faults, runs ATPG, and writes reports plus pattern
-files.
+files. The batch wrapper uses a 600-second per-benchmark timeout by default so a
+hard circuit cannot stall the whole run. Override it when needed with
+`PHASE4_ATPG_TIMEOUT_SEC`:
+
+```bash
+PHASE4_ATPG_TIMEOUT_SEC=1200 bash FTL/04_Phase4_ATPG/scripts/run_dirL_all.sh
+```
 
 To run a small full-ATPG smoke test:
 

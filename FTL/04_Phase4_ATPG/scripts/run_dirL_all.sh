@@ -2,9 +2,11 @@
 set -euo pipefail
 
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+timeout_sec=${PHASE4_ATPG_TIMEOUT_SEC:-600}
 
 python3 "${script_dir}/build_phase4_lib.py" \
   --categories dirL0 dirL5 dirL7 dirL9 dirL11
 
 python3 "${script_dir}/run_phase4_atpg.py" \
-  --categories dirL0 dirL5 dirL7 dirL9 dirL11
+  --categories dirL0 dirL5 dirL7 dirL9 dirL11 \
+  --timeout-sec "${timeout_sec}"
