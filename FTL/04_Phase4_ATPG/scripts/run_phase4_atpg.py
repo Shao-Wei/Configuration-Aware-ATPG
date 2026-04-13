@@ -31,6 +31,11 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=PHASE4_ROOT / "lib" / "mod_nangate45_plus_ftl_dirL_subset.mdt",
     )
+    parser.add_argument(
+        "--summary",
+        type=Path,
+        default=PHASE4_ROOT / "results" / "phase4_summary.csv",
+    )
     parser.add_argument("--timeout-sec", type=int, default=3600)
     parser.add_argument("--keep-going", action="store_true", default=True)
     parser.add_argument("--static-compression", choices=["on", "off"], default="on")
@@ -209,7 +214,9 @@ def main() -> int:
         if row["status"] != "ok" and not args.keep_going:
             break
 
-    summary_path = args.phase4_root / "results" / "phase4_summary.csv"
+    summary_path = args.summary
+    if not summary_path.is_absolute():
+        summary_path = REPO_ROOT / summary_path
     summary_path.parent.mkdir(parents=True, exist_ok=True)
     fieldnames = [
         "category",

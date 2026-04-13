@@ -53,10 +53,12 @@ Run the full selected `dirL*` ATPG batch with:
 bash FTL/04_Phase4_ATPG/scripts/run_dirL_all.sh
 ```
 
-This is the slow workflow. It reads the library and netlist, builds the ATPG
-circuit, creates stuck-at faults, runs ATPG, and writes reports plus pattern
-files. The batch wrapper uses a 600-second per-benchmark timeout by default so a
-hard circuit cannot stall the whole run. Override it when needed with
+This builds the shared Phase 4 library once, then generates and submits one
+Slurm job per selected `dirL*` category under
+`FTL/04_Phase4_ATPG/results/slurm/`. Each category job requests 96 hours and
+20 GB of memory, then writes its own summary CSV under
+`FTL/04_Phase4_ATPG/results/`. Override the per-benchmark ATPG timeout when
+needed with
 `PHASE4_ATPG_TIMEOUT_SEC`:
 
 ```bash
